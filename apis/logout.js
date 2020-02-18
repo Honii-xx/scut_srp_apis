@@ -1,18 +1,16 @@
 var Token = require('../models/token')
+var User = require('../models/user')
 var res_factory = require('../common/res_factory')
 
 module.exports = function (req, res, next) {
-  Token.find({
+  Token.deleteOne({
     token: req.body.token
-  }, function(err, tokens) {
+  }, function(err) {
     if (err) {
       res.json(res_factory.err_res)
       return
     }
-    if (tokens.length == 0 ) {
-      res.json(res_factory.create_res(1, 'token无效'))
-    } else {
-      res.json(res_factory.create_res(0, '验证成功'))
-    }
-  })
+    res.json(res_factory.create_res(0, '退出成功'))
+    return
+  });
 }

@@ -5,9 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors')
 
-var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var commonRouter = require('./routes/common')
+var Token = require('./models/token')
+var res_factory = require('./common/res_factory')
 
 var app = express();
 
@@ -23,7 +24,27 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.all('/*', function(req, res, next) {
+  var white_list = ['/common/login', '/users/register']
+  if (white_list.indexOf(req.url) >= 0) {
+    return next();
+  }
+  Token.find({
+    token: req.headers.authorization
+  }, function(err, tokens) {
+    if (err) {
+      res.json(res_factory.err_res)
+      return
+    }
+    if (tokens.length == 0 ) {
+      console.log('tokenwuxiao')
+      res.json(res_factory.create_res(1, 'token无效'))
+    } else {
+      next()
+    }
+  })
+})
+
 app.use('/users', usersRouter);
 app.use('/common', commonRouter)
 
