@@ -26,7 +26,7 @@ module.exports = function (req, res, next) {
       res.json(res_factory.create_res(0, '登陆成功', {
         token: token,
         username: users[0].username,
-        role: 'admin'
+        role: 'user'
       }))
       console.log(token)
       return

@@ -16,4 +16,11 @@ router.post('/logout', function(req, res, next) {
   do_logout(req, res, next)
 })
 
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
+router.post('/upload', upload.single('myfile'), function(req, res, next) {
+  console.log(req.file)
+  res.end('xixi')
+})
+
 module.exports = router;

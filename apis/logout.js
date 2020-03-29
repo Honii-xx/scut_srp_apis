@@ -3,6 +3,7 @@ var User = require('../models/user')
 var res_factory = require('../common/res_factory')
 
 module.exports = function (req, res, next) {
+  console.log(req.headers)
   Token.deleteOne({
     token: req.body.token
   }, function(err) {

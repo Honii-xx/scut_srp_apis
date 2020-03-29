@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors')
+var bodyParser = require('body-parser')
 
 var usersRouter = require('./routes/users');
 var commonRouter = require('./routes/common')
@@ -24,26 +25,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.all('/*', function(req, res, next) {
-  var white_list = ['/common/login', '/users/register']
-  if (white_list.indexOf(req.url) >= 0) {
-    return next();
-  }
-  Token.find({
-    token: req.headers.authorization
-  }, function(err, tokens) {
-    if (err) {
-      res.json(res_factory.err_res)
-      return
-    }
-    if (tokens.length == 0 ) {
-      console.log('tokenwuxiao')
-      res.json(res_factory.create_res(1, 'token无效'))
-    } else {
-      next()
-    }
-  })
-})
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
+
+// app.all('/*', function(req, res, next) {
+//   var white_list = ['/common/login', '/users/register']
+//   if (white_list.indexOf(req.url) >= 0) {
+//     return next();
+//   }
+//   Token.find({
+//     token: req.headers.authorization
+//   }, function(err, tokens) {
+//     if (err) {
+//       res.json(res_factory.err_res)
+//       return
+//     }
+//     if (tokens.length == 0 ) {
+//       res.json(res_factory.create_res(1, 'token无效'))
+//     } else {
+//       next()
+//     }
+//   })
+// })
 
 app.use('/users', usersRouter);
 app.use('/common', commonRouter)
