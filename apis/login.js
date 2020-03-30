@@ -18,6 +18,7 @@ module.exports = function (req, res, next) {
     }
     console.log(users)
     var token = uuidv4()
+    console.log(token)
     Token.updateOne({student_id: req.body.username}, {$set: {token: token}}, {upsert: true}, function(err) {
       if (err) {
         res.json(res_factory.err_res)

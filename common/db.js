@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var url = 'mongodb://localhost:27017/scutVoyager'
+var url = 'mongodb://localhost:27017/scutVoyager?authSource=admin'
 
 mongoose.set('useCreateIndex', true)
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
