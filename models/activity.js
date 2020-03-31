@@ -3,12 +3,11 @@ var mongoose = require('../common/db')
 var activitySchema = new mongoose.Schema({
   activity_id: String,
   url: String,
-  titile: String,
+  title: String,
   description: String,
-  adress: String,
+  address: String,
   number: Number,
   datetime: String,
-  participants: [String],
   expired_date:{
   	type: Boolean,
   	default: false

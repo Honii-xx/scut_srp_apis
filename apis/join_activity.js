@@ -13,36 +13,50 @@ module.exports = function (req, res, next) {
     }
     UserActivity.find({
       user_id: ts[0].student_id
-    },function (err, activities) {
+    }, function (err, activities) {
       if (err) {
         res.json(res_factory.err_res)
         return
       }
-      if(activities.length == 0){
+      if (activities.length == 0) {
         var user_act = new UserActivity({
-          user_id: ts[0].student_id
+          user_id: ts[0].student_id,
+          activity_ids: [req.params.id]
         })
+        user_act.save(function (err, ua) {
+          if (err) {
+            return res.json(res_factory.err_res)
+          }
+          Activity.updateOne({ activity_id: req.params.id }, { number: 1 }, {}, function (err) {
+            if (err) {
+              res.json(res_factory.err_res)
+              return
+            }
+            return res.json(res_factory.create_res(0, '成功'))
+          })
+        })
+        return
       }
       UserActivity.updateOne({
-      user_id: ts[0].student_id
-    },{
-      $addToSet: {
-       activity_ids: req.params.id
-      }
-    },{},function (err) {
-      if (err) {
-        res.json(res_factory.err_res)
-        return
-      }
-      Activity.updateOne({activity_id: req.params.id}, {number: number + 1}, {}, function (err) {
-      if (err) {
-        res.json(res_factory.err_res)
-        return
-      }
-    })
-      res.json(res_factory.create_res(0, '成功'))
-    })
+        user_id: ts[0].student_id
+      }, {
+        $addToSet: {
+          activity_ids: req.params.id
+        }
+      }, {}, function (err) {
+        if (err) {
+          res.json(res_factory.err_res)
+          return
+        }
+        Activity.updateOne({ activity_id: req.params.id }, { $inc: { number: 1 } }, {}, function (err) {
+          if (err) {
+            res.json(res_factory.err_res)
+            return
+          }
+        })
+        res.json(res_factory.create_res(0, '成功'))
+      })
 
     })
-})
+  })
 }

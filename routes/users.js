@@ -35,21 +35,16 @@ router.get('/campus_news/:id', function(req, res, next) {
 })
 
 router.get('/alumni_news/list', function(req, res, next) {
-  campus_news_list(req, res, next)
+  alumni_news_list(req, res, next)
 })
 
 router.get('/alumni_news/:id', function(req, res, next) {
-  campus_news_info(req, res, next)
+  alumni_news_info(req, res, next)
 })
 
 router.get('/activity/list', function(req, res, next) {
   activity_list(req, res, next)
 })
-
-router.get('/activity/:id', function(req, res, next) {
-  activity_info(req, res, next)
-})
-
 
 router.get('/activity/my', function(req, res, next) {
   user_activity(req, res, next)

@@ -8,6 +8,7 @@ var bodyParser = require('body-parser')
 
 var usersRouter = require('./routes/users');
 var commonRouter = require('./routes/common')
+var adminRouter = require('./routes/admin')
 var Token = require('./models/token')
 var res_factory = require('./common/res_factory')
 
@@ -50,6 +51,7 @@ app.use(bodyParser.json())
 
 app.use('/users', usersRouter);
 app.use('/common', commonRouter)
+app.use('/admin', adminRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

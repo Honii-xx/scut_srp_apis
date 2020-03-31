@@ -6,6 +6,7 @@ module.exports = function (req, res, next) {
   Token.find({
     token: req.headers.authorization
   }, function (err, ts) {
+    console.log(ts)
     if (err || ts.length == 0) {
       res.json(res_factory.err_res)
       return

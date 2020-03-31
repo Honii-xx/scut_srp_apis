@@ -30,8 +30,8 @@ module.exports = function (req, res, next) {
         class: req.body.class,
         phone: req.body.phone,
         email: req.body.email,
-        compony: req.body.compony,
-        compony_address: req.body.compony_address,
+        company: req.body.company,
+        company_address: req.body.company_address,
         alumni_association: req.body.alumni_association,
         other: req.body.other
       }

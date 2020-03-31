@@ -17,8 +17,8 @@ var userSchema = new mongoose.Schema({
   class: String,
   phone: String,
   email: String,
-  compony: String,
-  compony_address: String,
+  company: String,
+  company_address: String,
   alumni_association: String,
   other: String
 })

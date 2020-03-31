@@ -5,7 +5,7 @@ var alumniNewsSchema = new mongoose.Schema({
   title: String,
   content: String,
   url: String,
-  datatime: String
+  datetime: String
 })
 
 alumniNewsSchema.statics.findAll = function(callback) {

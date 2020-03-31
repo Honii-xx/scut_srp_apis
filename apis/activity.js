@@ -1,5 +1,4 @@
 var Token = require('../models/token')
-var User = require('../models/user')
 var Activity = require('../models/activity')
 var res_factory = require('../common/res_factory')
 
