@@ -8,7 +8,7 @@ var activitySchema = new mongoose.Schema({
   address: String,
   number: Number,
   datetime: String,
-  expired_date:{
+  expired_date:{  
   	type: Boolean,
   	default: false
   }

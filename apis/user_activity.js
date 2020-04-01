@@ -15,12 +15,9 @@ module.exports = function (req, res, next) {
     UserActivity.find({
       user_id: ts[0].student_id
     }, function (err, users) {
-      if (err) {
+      if (err || users.length == 0) {
         res.json(res_factory.err_res)
         return
-      }
-      if(users.length == 0){
-         res.json(res_factory.create_res(0, '成功'))
       }
       Activity.find({
         activity_id: {$in: users[0].activity_ids}
@@ -36,8 +33,6 @@ module.exports = function (req, res, next) {
          }
          res.json(res_factory.create_res(0, '成功', activities))
       })
-
-     
     })
   })
 }

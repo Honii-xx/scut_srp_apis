@@ -17,6 +17,9 @@ module.exports = function (req, res, next) {
         res.json(res_factory.err_res)
         return
       }
+      for (var i in activities) {
+        activities[i]._doc.joined = false
+      }
       res.json(res_factory.create_res(0, '成功', activities))
     })
   })
