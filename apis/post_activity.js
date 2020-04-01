@@ -1,5 +1,4 @@
 var Activity = require('../models/activity')
-var date = require("silly-datetime")
 var uuidv4 = require('uuid/v4')
 var res_factory = require('../common/res_factory')
 

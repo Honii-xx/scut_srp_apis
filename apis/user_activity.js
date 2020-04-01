@@ -26,7 +26,7 @@ module.exports = function (req, res, next) {
             res.json(res_factory.err_res)
          return
         }
-        var current_date = date.format(new Date(),'YYYYMMDD')
+        var current_date = date.format(new Date(),'YYYY-MM-DD')
          for(var i = 0; i < activities.length; ++i){
           if(current_date > activities[i].datetime)
             activities[i].expired_date = true

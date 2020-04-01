@@ -6,7 +6,13 @@ var rm_user = require('../apis/rm_user')
 var post_alumni_news = require('../apis/post_alumni_news')
 var post_activity = require('../apis/post_activity')
 var activity_joined_list = require('../apis/activity_joined_list')
+var user_info_by_id = require('../apis/user_info_by_id')
+var edit_info_by_id = require('../apis/edit_info_by_id')
+var rm_activity = require('../apis/rm_activity')
 
+router.get('/rm_activity/:id', function(req, res, next) {
+  rm_activity(req, res, next)
+})
 
 router.post('/add_user', function (req, res, next) {
   add_user(req, res, next)
@@ -28,6 +34,12 @@ router.get('/activity_joined_list/:id', function(req, res, next) {
   activity_joined_list(req, res, next)
 })
 
+router.get('/user_info_by_id/:id', function(req, res, next) {
+  user_info_by_id(req, res, next)
+})
 
+router.post('/edit_info_by_id/:id', function(req, res, next) {
+  edit_info_by_id(req, res, next)
+})
 
 module.exports = router;

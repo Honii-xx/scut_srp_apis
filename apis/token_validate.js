@@ -1,4 +1,6 @@
 var Token = require('../models/token')
+var UserActivity = require('../models/user_activity')
+
 var res_factory = require('../common/res_factory')
 
 module.exports = function (req, res, next) {
