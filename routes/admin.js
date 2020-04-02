@@ -9,6 +9,11 @@ var activity_joined_list = require('../apis/activity_joined_list')
 var user_info_by_id = require('../apis/user_info_by_id')
 var edit_info_by_id = require('../apis/edit_info_by_id')
 var rm_activity = require('../apis/rm_activity')
+var send_email = require('../apis/send_email')
+
+router.post('/send_email', function(req, res, next) {
+  send_email(req, res, next)
+})
 
 router.get('/rm_activity/:id', function(req, res, next) {
   rm_activity(req, res, next)
